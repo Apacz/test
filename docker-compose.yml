@@ -1,0 +1,26 @@
+version: '2'
+services:
+    web:
+          image: php:7.1-apache
+          volumes:
+                  - .:/var/www/html
+          ports:
+                  - "8080:80"
+          links:
+                  - postgres
+          depends_on:
+                  - postgres
+
+    postgres:
+         image: postgres
+         restart: always
+         ports:
+            - 5433:5432
+         environment:
+             - POSTGRES_DATABASE=${DB_DATABASE}
+             - POSTGRES_USER=${DB_USERNAME}
+             - POSTGRES_PASSWORD=${DB_PASSWORD}
+         volumes:
+             - ./postgres/data:/var/lib/postgres/data
+         env_file:
+             - .env

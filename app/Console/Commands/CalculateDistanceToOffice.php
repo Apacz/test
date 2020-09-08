@@ -52,6 +52,6 @@ class CalculateDistanceToOffice extends Command {
 			);
 		}
 
-		$this->line( 'Closest office: ' . $distanceCalculator->findClosestOffice( [ $lat, $lng ], $offices ) );
+		$this->line( 'Closest office: ' . $distanceCalculator->findClosestOffice( [ $lat, $lng ], $offices )['name'] );
 	}
 }
